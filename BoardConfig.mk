@@ -46,8 +46,7 @@ TARGET_TINY_ALSA_IGNORE_SILENCE_SIZE := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/wiko/s9321
-TARGET_KERNEL_CONFIG := tegra_stanip76_android_defconfig
-TARGET_KERNEL_CONFIG := tegra_s9321_stanip76_defconfig
+TARGET_KERNEL_CONFIG := tegra_s9321_android_defconfig
 BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
 
 # Bluetooth
