@@ -104,6 +104,6 @@ BOARD_SEPOLICY_DIRS := device/wiko/s9321/sepolicy/common \
                        device/wiko/s9321/sepolicy/product
 
 # Vendor Init
-TARGET_INIT_VENDOR_LIB := libinit_ceres
-TARGET_LIBINIT_DEFINES_FILE := device/wiko/s9321/init/init_ceres.cpp
+#TARGET_INIT_VENDOR_LIB := libinit_ceres
+#TARGET_LIBINIT_DEFINES_FILE := device/wiko/s9321/init/init_ceres.cpp
 

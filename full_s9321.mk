@@ -23,7 +23,9 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
-# Inherit from roth device
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+
+# Inherit from s9321 device
 $(call inherit-product, device/wiko/s9321/device.mk)
 
 PRODUCT_NAME := full_s9321

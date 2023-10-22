@@ -14,8 +14,7 @@
 # limitations under the License.
 #
 
-# s9321 screen sizes: 640dp/360dp  960dp/540dp
-PRODUCT_AAPT_CONFIG := mdpi hdpi xhdpi sw320dp sw340dp sw360dp sw380dp sw540dp small normal
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 TARGET_TEGRA_VERSION := t148
@@ -32,40 +31,59 @@ $(call inherit-product-if-exists, vendor/wiko/s9321/s9321-vendor.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     device/wiko/s9321/overlay
-#    device/wiko/s9321/shield_strings/overlay
 
 # Ramdisk
-PRODUCT_PACKAGES += \
-    fstab.roth \
-    init.common.rc \
-    init.roth.rc \
-    init.rothdir.rc \
-    init.recovery.roth.rc \
-    init.roth.usb.rc \
-    init.tf.rc \
-    init.thor.rc \
-    power.roth.rc \
-    ueventd.roth.rc
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/root/fstab.ceres:root/fstab.ceres \
+	$(LOCAL_PATH)/root/init.ceres.rc:root/init.ceres.rc \
+	$(LOCAL_PATH)/root/init.nv_dev_board.usb.rc:root/init.nv_dev_board.usb.rc \
+	$(LOCAL_PATH)/root/init.icera_ceres.rc:root/init.icera_ceres.rc \
+	$(LOCAL_PATH)/root/init.icera.common.rc:root/init.icera.common.rc \
+	$(LOCAL_PATH)/root/init.modem_icera.rc:root/init.modem_icera.rc \
+	$(LOCAL_PATH)/root/init.icera.phone.rc:root/init.icera.phone.rc \
+	$(LOCAL_PATH)/root/ueventd.ceres.rc:root/ueventd.ceres.rc \
+	$(LOCAL_PATH)/root/init.hdcp.rc:root/init.hdcp.rc \
+	$(LOCAL_PATH)/root/init_charging.rc:root/init_charging.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
+	$(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml \
+	$(LOCAL_PATH)/audio/conf/alsa.conf:system/usr/share/alsa/alsa.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/dsnoop.conf:system/usr/share/alsa/pcm/dsnoop.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/modem.conf:system/usr/share/alsa/pcm/modem.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/dpl.conf:system/usr/share/alsa/pcm/dpl.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/default.conf:system/usr/share/alsa/pcm/default.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/surround51.conf:system/usr/share/alsa/pcm/surround51.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/surround41.conf:system/usr/share/alsa/pcm/surround41.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/surround50.conf:system/usr/share/alsa/pcm/surround50.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/dmix.conf:system/usr/share/alsa/pcm/dmix.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/center_lfe.conf:system/usr/share/alsa/pcm/center_lfe.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/surround40.conf:system/usr/share/alsa/pcm/surround40.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/side.conf:system/usr/share/alsa/pcm/side.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/iec958.conf:system/usr/share/alsa/pcm/iec958.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/rear.conf:system/usr/share/alsa/pcm/rear.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/surround71.conf:system/usr/share/alsa/pcm/surround71.conf \
+	$(LOCAL_PATH)/audio/conf/pcm/front.conf:system/usr/share/alsa/pcm/front.conf \
+	$(LOCAL_PATH)/audio/conf/cards/aliases.conf:system/usr/share/alsa/cards/aliases.conf
 
 PRODUCT_PACKAGES += \
     tinyalsa \
@@ -84,21 +102,18 @@ PRODUCT_COPY_FILES += \
 
 # Idc
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/idc/raydium_ts.idc:system/usr/idc/raydium_ts.idc
-
-# Keychars
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keychars/Vendor_0955_Product_7202.kcm:system/usr/keychars/Vendor_0955_Product_7202.kcm
+    $(LOCAL_PATH)/idc/sensor00fn11.idc:system/usr/idc/sensor00fn11.idc
+    $(LOCAL_PATH)/idc/touch.idc:system/usr/idc/touch.idc
 
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    $(LOCAL_PATH)/keylayout/Vendor_0955_Product_7202.kl:system/usr/keylayout/Vendor_0955_Product_7202.kl \
-    $(LOCAL_PATH)/keylayout/Vendor_0955_Product_7203.kl:system/usr/keylayout/Vendor_0955_Product_7203.kl
+    $(LOCAL_PATH)/keylayout/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
+    $(LOCAL_PATH)/keylayout/Vendor_0955_Product_7210.kl:system/usr/keylayout/Vendor_0955_Product_7210.kl
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.roth
+    lights.ceres
 
 # Media config
 PRODUCT_COPY_FILES += \
@@ -119,8 +134,6 @@ PRODUCT_PACKAGES += \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
-
-PRODUCT_CHARACTERISTICS := shield
 
 # USB
 PRODUCT_PACKAGES += \
