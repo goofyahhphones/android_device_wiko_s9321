@@ -43,6 +43,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/init.icera.phone.rc:root/init.icera.phone.rc \
 	$(LOCAL_PATH)/rootdir/ueventd.ceres.rc:root/ueventd.ceres.rc \
 	$(LOCAL_PATH)/rootdir/init.hdcp.rc:root/init.hdcp.rc \
+   	$(LOCAL_PATH)/rootdir/init.recovery.ceres.rc:root/init.recovery.ceres.rc
 	$(LOCAL_PATH)/rootdir/init_charging.rc:root/init_charging.rc
 
 # Permissions
