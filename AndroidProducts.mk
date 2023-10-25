@@ -16,4 +16,4 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_s9321.mk \
-    $(LOCAL_DIR)/cm.mk
+    $(LOCAL_DIR)/lineage.mk
